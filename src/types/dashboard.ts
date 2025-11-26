@@ -3,3 +3,8 @@ export interface DashboardStats {
   totalDishOrdered: number;
   totalOrder: number;
 }
+
+export interface CategoryStats {
+  category: string;
+  totalOrdered: number;
+}

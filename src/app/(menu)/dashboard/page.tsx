@@ -2,6 +2,7 @@
 
 import MostProductCard from "@/components/molecules/MostProductCard";
 import TableReport from "@/components/molecules/TableReport";
+import ChartOrder from "@/components/organism/ChartOrder";
 import { formatPrice } from "@/helpers/formatPrice";
 import { useDashboardStats } from "@/hooks/useDashboard";
 import { useListOrder, useMostOrderedProducts } from "@/hooks/useOrder";
@@ -175,13 +176,7 @@ export default function DashboardPage() {
             )}
           </div>
         </div>
-        <div className="bg-background mt-6 rounded-lg p-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-white">
-              Most Type of Order
-            </h2>
-          </div>
-        </div>
+        <ChartOrder />
       </div>
     </div>
   );

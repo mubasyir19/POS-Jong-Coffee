@@ -1,6 +1,7 @@
 import { formatPrice } from "@/helpers/formatPrice";
 import Image from "next/image";
 import React from "react";
+import { API_URL } from "@/utils/config";
 
 interface MenuProps {
   imageLink: string;
@@ -16,7 +17,7 @@ export default function CardMenu({ imageLink, name, price, onAdd }: MenuProps) {
       className="bg-background hover:border-primary flex h-fit cursor-pointer flex-col items-center rounded-2xl border border-transparent p-4 text-center transition-transform duration-300"
     >
       <Image
-        src={imageLink}
+        src={`${API_URL}${imageLink}`}
         width={132}
         height={132}
         alt="image menu"

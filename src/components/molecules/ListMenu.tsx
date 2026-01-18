@@ -16,7 +16,8 @@ export default function ListMenu({ category }: ListMenuProps) {
       {products?.map((menu, i) => (
         <CardMenu
           key={i}
-          imageLink="/images/menu1.png"
+          // imageLink="/images/menu1.png"
+          imageLink={menu.imageUrl}
           name={menu.name}
           price={menu.price}
           onAdd={() => {

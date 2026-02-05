@@ -1,5 +1,5 @@
 import { addCategory, getAllCategory } from "@/services/categoryService";
-import { Category } from "@/types/category";
+import { Category, InputCategory } from "@/types/category";
 import { useCallback, useState } from "react";
 
 export function useCategory() {
@@ -25,7 +25,7 @@ export function useCategory() {
     }
   }, []);
 
-  const addNewCategory = async (payload: Category) => {
+  const addNewCategory = async (payload: InputCategory) => {
     try {
       const newCategory = await addCategory(payload);
 

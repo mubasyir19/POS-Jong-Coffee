@@ -2,7 +2,7 @@ import { API_URL } from "@/utils/config";
 
 export const getAllUnits = async () => {
   try {
-    const res = await fetch(`${API_URL}/unit`, {
+    const res = await fetch(`${API_URL}/unit/all`, {
       credentials: "include",
     });
     const data = await res.json();
@@ -15,7 +15,7 @@ export const getAllUnits = async () => {
 
 export const getDetailUnit = async (id: string) => {
   try {
-    const res = await fetch(`${API_URL}/unit/${id}`, {
+    const res = await fetch(`${API_URL}/unit/detail/${id}`, {
       credentials: "include",
     });
     const data = await res.json();

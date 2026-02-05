@@ -32,7 +32,7 @@ export default function FormOrder({
   const isLoading = isProcessing || isSubmitting;
 
   const totalPrice = items.reduce((acc, item) => {
-    return acc + item.price;
+    return acc + Number(item.price);
   }, 0);
 
   const resetForm = useCallback(() => {
@@ -154,9 +154,14 @@ export default function FormOrder({
         </div>
       ) : (
         <div className="no-scrollbar my-4 max-h-72 space-y-5 overflow-x-hidden overflow-y-auto">
-          {items.map((item) => (
-            <CartItemWrapper key={item.productId} item={item} />
-          ))}
+          {/* {items.map((item) => (
+            // <CartItemWrapper key={item.productId} item={item} />
+            <CartItemWrapper key={item.productVariantId} item={item} />
+          ))} */}
+          {items.map((item) => {
+            console.log("form order = ", item);
+            return <CartItemWrapper key={item.productVariantId} item={item} />;
+          })}
         </div>
       )}
       <div className="space-y-2">

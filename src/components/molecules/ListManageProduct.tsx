@@ -1,13 +1,12 @@
-// import { daftarMenu } from "@/helpers/listMenu";
 import React from "react";
 import ProductManagementCard from "./ProductManagementCard";
 import { useFetchProductByCategory } from "@/hooks/useProduct";
-import { API_URL } from "@/utils/config";
-import { Product } from "@/types/product";
+import { API_IMG_URL } from "@/utils/config";
+import { ProductCoffee } from "@/types/product";
 
 interface ListManageProductProps {
   category: string;
-  onEditProduct: (product: Product) => void;
+  onEditProduct?: (product: ProductCoffee) => void;
 }
 
 export default function ListManageProduct({
@@ -23,23 +22,21 @@ export default function ListManageProduct({
         <ProductManagementCard
           key={i}
           // imageLink="/images/menu1.png"
-          imageLink={`${API_URL}${menu.imageUrl}`}
+          imageLink={`${API_IMG_URL}${menu.imageUrl}`}
           name={menu.name}
-          price={Number(menu.price)}
-          stock={Number(menu.stock)}
-          unitId={menu.unitId}
+          variants={menu.productVariants}
           // onEditClick={() => onEditProduct()}
-          onEditClick={() =>
-            onEditProduct({
-              id: menu.id,
-              name: menu.name,
-              price: menu.price,
-              stock: menu.stock,
-              imageUrl: menu.imageUrl,
-              unitId: menu.unitId,
-              categoryId: menu.categoryId,
-            })
-          }
+          onEditClick={() => {
+            if (onEditProduct) {
+              onEditProduct({
+                id: menu.id,
+                name: menu.name,
+                imageUrl: menu.imageUrl,
+                categoryId: menu.categoryId,
+                productVariants: menu.productVariants,
+              });
+            }
+          }}
         />
       ))}
     </>

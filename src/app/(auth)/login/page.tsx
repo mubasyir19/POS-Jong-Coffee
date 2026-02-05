@@ -10,10 +10,10 @@ import { toast } from "sonner";
 
 export default function Loginpage() {
   const router = useRouter();
-  const { actionLogin } = useLoginUser();
+  const { actionLogin, loading } = useLoginUser();
   const [formLogin, setFormLogin] = useState<FormLogin>({
-    username: "adminPOS",
-    password: "admin123",
+    username: "owner_coffee",
+    password: "owner123",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,8 +39,9 @@ export default function Loginpage() {
       toast.success("Berhasil login");
 
       setTimeout(() => {
+        router.refresh();
         router.push("/home");
-      }, 2000);
+      }, 500);
     } catch (error) {
       toast.error((error as Error).message || "Gagal login");
     }
@@ -99,9 +100,10 @@ export default function Loginpage() {
             <div className="">
               <button
                 type="submit"
+                disabled={loading}
                 className="bg-primary w-full rounded-md py-2 text-center font-semibold text-white"
               >
-                Sign in
+                {loading ? "Loading..." : "Sign in"}
               </button>
             </div>
           </form>

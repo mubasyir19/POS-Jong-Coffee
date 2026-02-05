@@ -1,14 +1,17 @@
 import { formatPrice } from "@/helpers/formatPrice";
 // import { findMenuById } from "@/helpers/listMenu";
-import { useProductById } from "@/hooks/useProduct";
+import { useProductById, useVariantsByProductId } from "@/hooks/useProduct";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
 interface CartItemProps {
   productId: string;
+  productVariantId: string;
   quantity: number;
   price: number;
+  nameVariant: string;
+  productName: string;
   onRemove: () => void;
   addQty: () => void;
   minQty: () => void;
@@ -18,18 +21,22 @@ interface CartItemProps {
 
 export default function CartItem({
   productId,
+  productVariantId,
   quantity,
   price,
+  nameVariant,
+  productName,
   addQty,
   minQty,
   onRemove,
   note,
   onNoteChange,
 }: CartItemProps) {
-  const { product } = useProductById(productId);
+  // const { product } = useProductById(productVariantId);
+  // console.log("(client) fetchVariant = ", fetchVariant);
   // const menu = findMenuById(productId);
   // const subtotal = (price || menu?.hargaMenu || 0) * (quantity || 0);
-  const subtotal = (price || product?.price || 0) * (quantity || 0);
+  // const subtotal = (price || product?.price || 0) * (quantity || 0);
 
   return (
     <div id="cart-item">
@@ -43,11 +50,13 @@ export default function CartItem({
             className="rounded-full"
           />
           <div className="flex flex-col">
-            <span className="max-w-20 truncate text-sm font-medium text-gray-200">
-              {product?.name}
+            {/* <span className="max-w-20 truncate text-sm font-medium text-gray-200"> */}
+            <span className="flex max-w-40 flex-wrap text-sm font-medium text-gray-200">
+              {productName} - {nameVariant}
             </span>
             <span className="text-xs text-gray-400">
-              {formatPrice(product?.price as number)}
+              {/* {formatPrice(dataVariants?.priceOffline as number)} */}
+              {formatPrice(price)}
             </span>
           </div>
         </div>
@@ -71,7 +80,8 @@ export default function CartItem({
           </div>
           <div className="font-medium text-gray-200">
             {/* {formatPrice((product?.hargaMenu || 0) * quantity)} */}
-            {formatPrice(subtotal)}
+            {/* {formatPrice(subtotal)} */}
+            {formatPrice(12000)}
           </div>
         </div>
       </div>

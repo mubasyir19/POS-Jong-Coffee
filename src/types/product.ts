@@ -1,20 +1,45 @@
-export interface Product {
-  id: string;
-  categoryId: string;
-  unitId: string;
+import { Unit } from "./unit";
+
+// Variant Product - dapat digunakan untuk create dan fetch
+export interface ProductVariant {
+  id?: string;
   name: string;
-  price: number;
+  unitId: string;
+  priceOnline: number;
+  priceOffline: number;
+  productId: string;
   stock: number;
-  imageUrl: string;
-  //   createdAt: "2025-09-27T10:03:48.108Z";
-  //   updatedAt: "2025-09-27T10:03:48.108Z";
+  sku: string;
+  unit?: Unit;
+  product?: ProductCoffee;
 }
 
-export interface ProductForm {
+export interface InputVariant {
   name: string;
-  price: number;
-  stock: number;
-  imageUrl: File | string | null;
-  categoryId: string;
   unitId: string;
+  productId: string;
+  priceOnline: number;
+  priceOffline: number;
+  stock: number;
+  sku: string;
+}
+
+// Product untuk Create/Add (tanpa id)
+export interface AddProduct {
+  name: string;
+  categoryId: string;
+  imageUrl?: File | string | null;
+  variants: ProductVariant[];
+}
+
+// Product untuk Fetch/Edit (dengan id)
+export interface ProductCoffee {
+  id: string;
+  categoryId: string;
+  name: string;
+  imageUrl?: File | string | null;
+  createdAt?: string;
+  updatedAt?: string;
+  productVariants: ProductVariant[];
+  variants?: ProductVariant[]; // alias untuk compatibility
 }

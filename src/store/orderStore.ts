@@ -19,18 +19,19 @@ export const useOrderStore = create<OrderState>()(
       addItem: (item) =>
         set((state) => {
           const exists = state.items.find(
-            (i) => i.productId === item.productId,
+            (i) => i.productVariantId === item.productVariantId,
           );
           if (exists) {
             return {
               items: state.items.map((i) =>
-                i.productId === item.productId
+                i.productVariantId === item.productVariantId
                   ? { ...i, quantity: i.quantity + 1 }
                   : i,
               ),
             };
           }
 
+          console.log("ini state item yang ditambahkan = ", item);
           return {
             items: [
               ...state.items,
@@ -40,13 +41,13 @@ export const useOrderStore = create<OrderState>()(
         }),
       removeItem: (id) =>
         set((state) => ({
-          items: state.items.filter((i) => i.productId !== id),
+          items: state.items.filter((i) => i.productVariantId !== id),
         })),
       clearOrder: () => set({ items: [] }),
       increaseQty: (id) =>
         set((state) => ({
           items: state.items.map((i) =>
-            i.productId === id
+            i.productVariantId === id
               ? {
                   ...i,
                   quantity: i.quantity + 1,
@@ -59,7 +60,7 @@ export const useOrderStore = create<OrderState>()(
         set((state) => ({
           items: state.items
             .map((i) =>
-              i.productId === id
+              i.productVariantId === id
                 ? {
                     ...i,
                     quantity: i.quantity - 1,
@@ -72,7 +73,7 @@ export const useOrderStore = create<OrderState>()(
       updateNote: (productId, note) =>
         set((state) => ({
           items: state.items.map((i) =>
-            i.productId === productId ? { ...i, note } : i,
+            i.productVariantId === productId ? { ...i, note } : i,
           ),
         })),
     }),

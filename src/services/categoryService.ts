@@ -1,9 +1,9 @@
 import { API_URL } from "@/utils/config";
-import { Category } from "@/types/category";
+import { Category, InputCategory } from "@/types/category";
 
 export const getAllCategory = async () => {
   try {
-    const res = await fetch(`${API_URL}/category`, {
+    const res = await fetch(`${API_URL}/category/all`, {
       credentials: "include",
     });
     const data = await res.json();
@@ -27,7 +27,7 @@ export const getCategoryById = async (id: string) => {
   }
 };
 
-export const addCategory = async (input: Category) => {
+export const addCategory = async (input: InputCategory) => {
   try {
     const res = await fetch(`${API_URL}/category/add`, {
       method: "POST",

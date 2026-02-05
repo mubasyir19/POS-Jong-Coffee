@@ -15,7 +15,8 @@ export interface Product {
 export interface OrderItem {
   id: string;
   orderId: string;
-  productId: string;
+  // productId: string;
+  productVariantId: string;
   quantity: number;
   price: number;
   note?: string;
@@ -39,7 +40,8 @@ export interface Order {
 }
 
 export interface OrderItemCheckout {
-  productId: string;
+  // productId: string;
+  productVariantId: string;
   quantity: number;
   price: number;
   note?: string;

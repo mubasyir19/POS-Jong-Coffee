@@ -1,8 +1,4 @@
-import {
-  useProductById,
-  useVariantDetail,
-  useVariantsByProductId,
-} from "@/hooks/useProduct";
+import { useProductById, useVariantDetail } from "@/hooks/useProduct";
 import { OrderItem } from "@/types";
 import React from "react";
 import CartItem from "./CartItem";
@@ -24,11 +20,16 @@ export default function CartItemWrapper({ item }: CartItemWrapperProps) {
       </div>
     );
 
+  console.log("product ", product);
+
   return (
     <CartItem
       key={item.productVariantId}
       {...item}
-      price={(dataVariant?.priceOffline as number) || 0 * item.quantity}
+      imageProduct={
+        typeof product?.imageUrl === "string" ? product.imageUrl : null
+      }
+      price={(item.price as number) || 0 * item.quantity}
       nameVariant={dataVariant?.name as string}
       productName={dataVariant?.product?.name as string}
       quantity={item.quantity}

@@ -104,21 +104,6 @@ export function useProducts() {
     }
   }, []);
 
-  // const addNewProduct = async (payload: ProductForm) => {
-  //   try {
-  //     const newProduct = await addProduct(payload);
-
-  //     setProducts((prev) => [newProduct, ...prev]);
-  //     return newProduct;
-  //   } catch (error) {
-  //     if (error instanceof Error) {
-  //       setError(error.message);
-  //     } else {
-  //       setError("Unexpected error");
-  //     }
-  //   }
-  // };
-
   return { products, loading, error, fetchProducts };
 }
 

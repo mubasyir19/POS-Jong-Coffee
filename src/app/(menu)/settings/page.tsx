@@ -3,12 +3,14 @@
 import CategoryTabs from "@/components/molecules/CategoryTabs";
 import AboutUs from "@/components/organism/Tab/AboutUs";
 import ApperanceTab from "@/components/organism/Tab/ApperanceTab";
+import DiscountManage from "@/components/organism/Tab/DiscountManage";
 import ManagementProduct from "@/components/organism/Tab/ManagementProduct";
 import NotificationTab from "@/components/organism/Tab/NotificationTab";
 import SecurityTab from "@/components/organism/Tab/SecurityTab";
 import StoreTab from "@/components/organism/Tab/StoreTab";
 import {
   BadgePercent,
+  Barcode,
   Bell,
   CircleAlert,
   Heart,
@@ -34,6 +36,12 @@ const tabs = [
     name: "management",
     label: "Product management",
     desc: "Manage your product, pricing, etc",
+    icon: Barcode,
+  },
+  {
+    name: "discount",
+    label: "Discount management",
+    desc: "Manage discount store",
     icon: BadgePercent,
   },
   {
@@ -71,6 +79,8 @@ export default function SettingsPage() {
         return <StoreTab />;
       case "management":
         return <ManagementProduct />;
+      case "discount":
+        return <DiscountManage />;
       case "notification":
         return <NotificationTab />;
       case "security":

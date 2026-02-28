@@ -1,12 +1,12 @@
 import { formatPrice } from "@/helpers/formatPrice";
-// import { findMenuById } from "@/helpers/listMenu";
-import { useProductById, useVariantsByProductId } from "@/hooks/useProduct";
+import { API_IMG_URL } from "@/utils/config";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
 interface CartItemProps {
   productId: string;
+  imageProduct: string | null;
   productVariantId: string;
   quantity: number;
   price: number;
@@ -20,8 +20,7 @@ interface CartItemProps {
 }
 
 export default function CartItem({
-  productId,
-  productVariantId,
+  imageProduct,
   quantity,
   price,
   nameVariant,
@@ -32,56 +31,45 @@ export default function CartItem({
   note,
   onNoteChange,
 }: CartItemProps) {
-  // const { product } = useProductById(productVariantId);
-  // console.log("(client) fetchVariant = ", fetchVariant);
-  // const menu = findMenuById(productId);
-  // const subtotal = (price || menu?.hargaMenu || 0) * (quantity || 0);
-  // const subtotal = (price || product?.price || 0) * (quantity || 0);
+  const subtotal = (price || 0) * (quantity || 0);
+
+  const resolvedImage =
+    typeof imageProduct === "string" && imageProduct
+      ? imageProduct.startsWith("http")
+        ? imageProduct
+        : `${API_IMG_URL}${imageProduct}`
+      : "/images/placeholder.png";
 
   return (
     <div id="cart-item">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Image
-            src={`/images/menu1.png`}
+            src={resolvedImage}
             alt="menu1"
             width={48}
             height={48}
-            className="rounded-full"
+            className="size-12 rounded-full"
           />
           <div className="flex flex-col">
-            {/* <span className="max-w-20 truncate text-sm font-medium text-gray-200"> */}
             <span className="flex max-w-40 flex-wrap text-sm font-medium text-gray-200">
               {productName} - {nameVariant}
             </span>
-            <span className="text-xs text-gray-400">
-              {/* {formatPrice(dataVariants?.priceOffline as number)} */}
-              {formatPrice(price)}
-            </span>
+            <span className="text-xs text-gray-400">{formatPrice(price)}</span>
           </div>
         </div>
         <div className="flex items-center gap-10">
           <div className="flex items-center gap-4">
-            <button
-              //   onClick={() => decreaseQty(product?.id as string)}
-              onClick={minQty}
-              className="text-primary text-xl"
-            >
+            <button onClick={minQty} className="text-primary text-xl">
               -
             </button>
             <p className="font-medium text-white">{quantity}</p>
-            <button
-              //   onClick={() => increaseQty(product?.id as string)}
-              onClick={addQty}
-              className="text-primary text-xl"
-            >
+            <button onClick={addQty} className="text-primary text-xl">
               +
             </button>
           </div>
           <div className="font-medium text-gray-200">
-            {/* {formatPrice((product?.hargaMenu || 0) * quantity)} */}
-            {/* {formatPrice(subtotal)} */}
-            {formatPrice(12000)}
+            {formatPrice(subtotal)}
           </div>
         </div>
       </div>

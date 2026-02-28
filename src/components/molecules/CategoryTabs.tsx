@@ -25,7 +25,7 @@ export default function CategoryTabs({
       }
     };
     load();
-  }, [fetchCategory, onSelect]);
+  }, [fetchCategory, onSelect, selected]);
 
   return (
     <div className="border-surface flex space-x-6 overflow-x-scroll border-b lg:overflow-hidden">

@@ -71,47 +71,6 @@ export default function CardMenu({
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <div className="text-white">Pilih Variant :</div>
-        {/* <div className="space-y-3">
-          {product.productVariants.map((variant) => (
-            <div
-              key={variant.id}
-              onClick={() => {
-                if (!variant.id) return;
-                addItem({
-                  productId: variant.productId,
-                  productVariantId: variant.id,
-                  quantity: 1,
-                  price: variant.priceOffline,
-                  note: "",
-                });
-              }}
-              className="border-primary flex items-center justify-between rounded-lg border px-6 py-3"
-            >
-              <div className="">
-                <p className="text-xl font-medium text-white">{variant.name}</p>
-                <div className="mt-2 flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm text-white">Offline :</p>
-                    <p className="text-primary text-sm font-medium">
-                      {formatPrice(variant.priceOffline)}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm text-white">Online :</p>
-                    <p className="text-primary text-sm font-medium">
-                      {formatPrice(variant.priceOnline)}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="">
-                <button className="bg-primary/20 hover:bg-primary/50 flex size-10 cursor-pointer items-center justify-center rounded-full transition-all duration-200">
-                  <Plus className="text-primary size-5" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div> */}
         <Accordion type="multiple" className="space-y-3">
           {product.productVariants.map((variant) => (
             <AccordionItem key={variant.id} value={variant.id as string}>
